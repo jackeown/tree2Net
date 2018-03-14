@@ -6,4 +6,4 @@ Convert a sci-kit learn decision tree to a simple neural network in a straightfo
 
 **rforests.py** is an example applying this transformation to every tree in a forest.
 
-Usage is explained in comments in the **tree2nn.py**
+Usage is explained in comments in the **tree2Net.py**
