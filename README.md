@@ -1,4 +1,4 @@
-# tree2nn
+# tree2Net
 Convert a sci-kit learn decision tree to a simple neural network in a straightforward way!
 ---
 
