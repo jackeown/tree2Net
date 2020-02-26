@@ -2,8 +2,9 @@
 Convert a sci-kit learn decision tree to a simple neural network in a straightforward way!
 ---
 
-**main.py** is a good example of how to use tree2nn.
+**tree2Pytorch** is a good example of how to use tree2nn with pytorch. 
+It should be pretty easy to use with Keras as well. 
 
-**rforests.py** is an example applying this transformation to every tree in a forest.
+**old_stuff** contains original tensorflow code which is now obsolete.
 
 Usage is explained in comments in the **tree2Net.py**

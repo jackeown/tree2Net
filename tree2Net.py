@@ -1,6 +1,8 @@
 import numpy as np
+import typing
+from sklearn.tree import DecisionTreeClassifier
 
-def tree2Net(tree,saturation=5):
+def tree2Net(tree, saturation=5):
 	"""
 	Calculates Weight Matrices and bias vectors
 	for a neural network, given a trained sklearn tree.
@@ -30,6 +32,7 @@ def tree2Net(tree,saturation=5):
 	hiddenWeights = []
 	hiddenBiases = []
 	for f,t in zip(fs,ts):
+		# f < 0 means that this node is a leaf.
 		if f >= 0:
 			# add row instead of column and later transpose.
 			hiddenWeights.append([-1*saturation if i==f else 0 for i in range(n_features)])
@@ -48,17 +51,16 @@ def tree2Net(tree,saturation=5):
 
 	path = [0]
 	visited = [False for i in range(n_nodes)]
+
 	# save classes for later ORing
 	classes = []
 	nodes = list(zip(ls,rs,fs,ts,vs))
-	while(True):
+	while path != []:
 		i = path[-1]
 		visited[i] = True
-		# print(i)
 		l,r,f,t,v = nodes[i]
-		# print("after")
 
-		if l == -1 and r == -1:
+		if l == -1 and r == -1: # leaf node
 			vec = [0 for _ in range(n_splits)]
 			#Keep track of positive weights for calculating bias.
 			numPositive = 0
@@ -84,9 +86,7 @@ def tree2Net(tree,saturation=5):
 
 		else:
 			path.pop()
-			if path == []:
-				break
-
+			
 
 	# hidden matrix transposed and appended to list of all weights
 	weights.append(np.array(hiddenWeights).T.astype("float32"))
